@@ -1,0 +1,133 @@
+<div class="container">
+  <h2>Form</h2>
+
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        [ngModel]="developer.name"
+        name="name"
+        required
+        minlength="4"
+        #name="ngModel"
+      />
+      <span
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="help-block text-danger"
+      >
+        <div *ngIf="name.errors?.['required']">Name is required.</div>
+        <div *ngIf="name.errors?.['minlength']">
+          Name must be at least 4 characters long.
+        </div>
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="">Headquarters location</label>
+      <input
+        type="text"
+        class="form-control"
+        [ngModel]="developer.headquartersLocation"
+        name="headquartersLocation"
+        required
+        minlength="4"
+        #location="ngModel"
+      />
+      <span
+        *ngIf="location.invalid && (location.dirty || location.touched)"
+        class="help-block text-danger"
+      >
+        <div *ngIf="location.errors?.['required']">Location is required.</div>
+        <div *ngIf="location.errors?.['minlength']">
+          Location must be at least 4 characters long.
+        </div>
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="">Date of establishment</label>
+      <input
+        type="date"
+        class="form-control"
+        [ngModel]="developer.dateOfEstablishment | date : 'yyyy-MM-dd'"
+        name="dateOfEstablishment"
+        required
+        #date="ngModel"
+      />
+      <span
+        *ngIf="date.invalid && (date.dirty || date.touched)"
+        class="help-block text-danger"
+      >
+        <div *ngIf="date.errors?.['required']">Date is required.</div>
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="">Website</label>
+      <input
+        type="url"
+        class="form-control"
+        [ngModel]="developer.website"
+        name="website"
+        placeholder="https://example.com"
+        required
+        #website="ngModel"
+      />
+      <span
+        *ngIf="website.invalid && (website.dirty || website.touched)"
+        class="help-block text-danger"
+      >
+        <div *ngIf="website.errors?.['required']">Website is required.</div>
+        <div *ngIf="website.errors?.['appUrlvalidator']">
+          Please provide a valid format.
+        </div>
+      </span>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="">Founder</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="founderInput"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <p>
+            <button
+              type="button"
+              class="btn btn-info btn-sm mt-3"
+              (click)="addFounder()"
+              [disabled]="!founderInput"
+            >
+              Add founder
+            </button>
+          </p>
+          <div class="row" *ngFor="let founder of founderList">
+            <div class="col-10">
+              {{ founder }}
+            </div>
+            <div class="col-2">
+              <a
+                type="button"
+                class="btn btn-danger m-1"
+                (click)="deleteFounder(founder)"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col">
+        <button
+          class="btn btn-primary btn-sm float-left"
+          type="submit"
+          [disabled]="!f.valid"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
