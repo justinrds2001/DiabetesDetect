@@ -28,7 +28,7 @@
             type="radio"
             name="gender_encoded"
             [(ngModel)]="formModel.gender_encoded"
-            value="true"
+            value="1"
             required
           />
           Male
@@ -38,15 +38,12 @@
             type="radio"
             name="gender"
             [(ngModel)]="formModel.gender_encoded"
-            value="false"
+            value="0"
             required
           />
           Female
         </label>
       </div>
-      <span *ngIf="!formModel.gender_encoded" class="help-block text-danger">
-        Gender is required.
-      </span>
     </div>
 
     <div class="form-group">
@@ -57,7 +54,7 @@
             type="radio"
             name="hypertension"
             [(ngModel)]="formModel.hypertension"
-            value="true"
+            value="1"
             required
           />
           Yes
@@ -67,15 +64,12 @@
             type="radio"
             name="hypertension"
             [(ngModel)]="formModel.hypertension"
-            value="false"
+            value="0"
             required
           />
           No
         </label>
       </div>
-      <span *ngIf="!formModel.hypertension" class="help-block text-danger">
-        Hypertension is required.
-      </span>
     </div>
 
     <div class="form-group">
@@ -86,7 +80,7 @@
             type="radio"
             name="heart_disease"
             [(ngModel)]="formModel.heart_disease"
-            value="true"
+            value="1"
             required
           />
           Yes
@@ -96,47 +90,29 @@
             type="radio"
             name="heart_disease"
             [(ngModel)]="formModel.heart_disease"
-            value="false"
+            value="0"
             required
           />
           No
         </label>
       </div>
-      <span *ngIf="!formModel.heart_disease" class="help-block text-danger">
-        Heart disease is required.
-      </span>
     </div>
 
     <div class="form-group">
-      <label for="">Smoking history</label>
-      <div>
-        <label>
-          <input
-            type="radio"
-            name="smoking_history_encoded"
-            [(ngModel)]="formModel.smoking_history_encoded"
-            value="true"
-            required
-          />
-          Yes
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="smoking_history_encoded"
-            [(ngModel)]="formModel.smoking_history_encoded"
-            value="false"
-            required
-          />
-          No
-        </label>
-      </div>
-      <span
-        *ngIf="!formModel.smoking_history_encoded"
-        class="help-block text-danger"
+      <label for="smoking_history_encoded">Smoking history</label>
+      <select
+        class="form-control"
+        name="smoking_history_encoded"
+        [(ngModel)]="formModel.smoking_history_encoded"
+        required
       >
-        Smoking history is required.
-      </span>
+        <option value="0">No Info</option>
+        <option value="4">Never</option>
+        <option value="5">Not Current</option>
+        <option value="3">Former</option>
+        <option value="2">Ever</option>
+        <option value="1">Current</option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -149,12 +125,6 @@
         required
         #bmi="ngModel"
       />
-      <span
-        *ngIf="bmi.invalid && (bmi.dirty || bmi.touched)"
-        class="help-block text-danger"
-      >
-        <div *ngIf="bmi.errors?.['required']">BMI is required.</div>
-      </span>
     </div>
 
     <div class="form-group">
@@ -167,16 +137,6 @@
         required
         #HbA1c_level="ngModel"
       />
-      <span
-        *ngIf="
-          HbA1c_level.invalid && (HbA1c_level.dirty || HbA1c_level.touched)
-        "
-        class="help-block text-danger"
-      >
-        <div *ngIf="HbA1c_level.errors?.['required']">
-          HbA1c level is required.
-        </div>
-      </span>
     </div>
 
     <div class="form-group">
@@ -189,17 +149,6 @@
         required
         #blood_glucose_level="ngModel"
       />
-      <span
-        *ngIf="
-          blood_glucose_level.invalid &&
-          (blood_glucose_level.dirty || blood_glucose_level.touched)
-        "
-        class="help-block text-danger"
-      >
-        <div *ngIf="blood_glucose_level.errors?.['required']">
-          Blood glucose level is required.
-        </div>
-      </span>
     </div>
 
     <div class="row justify-content-end">
@@ -207,7 +156,13 @@
         <button
           class="btn btn-primary btn-sm float-left"
           type="submit"
-          [disabled]="!f.valid"
+          [disabled]="
+            !f.valid ||
+            !formModel.gender_encoded ||
+            !formModel.hypertension ||
+            !formModel.heart_disease ||
+            !formModel.smoking_history_encoded
+          "
         >
           Save
         </button>

@@ -4,6 +4,10 @@
     <p>Diabetes: {{ prediction.diabetes }}</p>
   </div>
   <div class="prediction-image">
-    <img [src]="prediction.image_url" alt="Diabetes Prediction Image" />
+    <img
+      src="data:image/png;base64, {{ prediction.image_base64 }}"
+      alt="Diabetes Prediction Image"
+      style="width: 100%"
+    />
   </div>
 </div>

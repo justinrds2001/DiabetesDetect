@@ -17,7 +17,7 @@ export class FormService {
     console.log('get prediction called');
     console.log('input:', input);
     return this.httpClient.post<PredictionModel>(
-      `${this.baseUrl}predict`,
+      `${this.baseUrl}predictgood`,
       input
     );
   }
