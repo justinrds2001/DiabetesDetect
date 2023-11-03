@@ -3,121 +3,205 @@
 
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
-      <label for="">Name</label>
+      <label for="">Age</label>
       <input
-        type="text"
+        type="number"
         class="form-control"
-        [ngModel]="developer.name"
-        name="name"
+        [ngModel]="formModel.age"
+        name="age"
         required
-        minlength="4"
-        #name="ngModel"
+        #age="ngModel"
       />
       <span
-        *ngIf="name.invalid && (name.dirty || name.touched)"
+        *ngIf="age.invalid && (age.dirty || age.touched)"
         class="help-block text-danger"
       >
-        <div *ngIf="name.errors?.['required']">Name is required.</div>
-        <div *ngIf="name.errors?.['minlength']">
-          Name must be at least 4 characters long.
-        </div>
+        <div *ngIf="age.errors?.['required']">Age is required.</div>
       </span>
     </div>
+
     <div class="form-group">
-      <label for="">Headquarters location</label>
-      <input
-        type="text"
-        class="form-control"
-        [ngModel]="developer.headquartersLocation"
-        name="headquartersLocation"
-        required
-        minlength="4"
-        #location="ngModel"
-      />
-      <span
-        *ngIf="location.invalid && (location.dirty || location.touched)"
-        class="help-block text-danger"
-      >
-        <div *ngIf="location.errors?.['required']">Location is required.</div>
-        <div *ngIf="location.errors?.['minlength']">
-          Location must be at least 4 characters long.
-        </div>
-      </span>
-    </div>
-    <div class="form-group">
-      <label for="">Date of establishment</label>
-      <input
-        type="date"
-        class="form-control"
-        [ngModel]="developer.dateOfEstablishment | date : 'yyyy-MM-dd'"
-        name="dateOfEstablishment"
-        required
-        #date="ngModel"
-      />
-      <span
-        *ngIf="date.invalid && (date.dirty || date.touched)"
-        class="help-block text-danger"
-      >
-        <div *ngIf="date.errors?.['required']">Date is required.</div>
-      </span>
-    </div>
-    <div class="form-group">
-      <label for="">Website</label>
-      <input
-        type="url"
-        class="form-control"
-        [ngModel]="developer.website"
-        name="website"
-        placeholder="https://example.com"
-        required
-        #website="ngModel"
-      />
-      <span
-        *ngIf="website.invalid && (website.dirty || website.touched)"
-        class="help-block text-danger"
-      >
-        <div *ngIf="website.errors?.['required']">Website is required.</div>
-        <div *ngIf="website.errors?.['appUrlvalidator']">
-          Please provide a valid format.
-        </div>
-      </span>
-    </div>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-md-4">
-          <label for="">Founder</label>
+      <label for="">Gender</label>
+      <div>
+        <label>
           <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="founderInput"
-            [ngModelOptions]="{ standalone: true }"
+            type="radio"
+            name="gender_encoded"
+            [(ngModel)]="formModel.gender_encoded"
+            value="true"
+            required
           />
-          <p>
-            <button
-              type="button"
-              class="btn btn-info btn-sm mt-3"
-              (click)="addFounder()"
-              [disabled]="!founderInput"
-            >
-              Add founder
-            </button>
-          </p>
-          <div class="row" *ngFor="let founder of founderList">
-            <div class="col-10">
-              {{ founder }}
-            </div>
-            <div class="col-2">
-              <a
-                type="button"
-                class="btn btn-danger m-1"
-                (click)="deleteFounder(founder)"
-                >Delete</a
-              >
-            </div>
-          </div>
-        </div>
+          Male
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            [(ngModel)]="formModel.gender_encoded"
+            value="false"
+            required
+          />
+          Female
+        </label>
       </div>
+      <span *ngIf="!formModel.gender_encoded" class="help-block text-danger">
+        Gender is required.
+      </span>
     </div>
+
+    <div class="form-group">
+      <label for="">Hypertension</label>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="hypertension"
+            [(ngModel)]="formModel.hypertension"
+            value="true"
+            required
+          />
+          Yes
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="hypertension"
+            [(ngModel)]="formModel.hypertension"
+            value="false"
+            required
+          />
+          No
+        </label>
+      </div>
+      <span *ngIf="!formModel.hypertension" class="help-block text-danger">
+        Hypertension is required.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="">Heart disease</label>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="heart_disease"
+            [(ngModel)]="formModel.heart_disease"
+            value="true"
+            required
+          />
+          Yes
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="heart_disease"
+            [(ngModel)]="formModel.heart_disease"
+            value="false"
+            required
+          />
+          No
+        </label>
+      </div>
+      <span *ngIf="!formModel.heart_disease" class="help-block text-danger">
+        Heart disease is required.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="">Smoking history</label>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="smoking_history_encoded"
+            [(ngModel)]="formModel.smoking_history_encoded"
+            value="true"
+            required
+          />
+          Yes
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="smoking_history_encoded"
+            [(ngModel)]="formModel.smoking_history_encoded"
+            value="false"
+            required
+          />
+          No
+        </label>
+      </div>
+      <span
+        *ngIf="!formModel.smoking_history_encoded"
+        class="help-block text-danger"
+      >
+        Smoking history is required.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="">BMI</label>
+      <input
+        type="number"
+        class="form-control"
+        [ngModel]="formModel.bmi"
+        name="bmi"
+        required
+        #bmi="ngModel"
+      />
+      <span
+        *ngIf="bmi.invalid && (bmi.dirty || bmi.touched)"
+        class="help-block text-danger"
+      >
+        <div *ngIf="bmi.errors?.['required']">BMI is required.</div>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="">HbA1c level</label>
+      <input
+        type="number"
+        class="form-control"
+        [ngModel]="formModel.HbA1c_level"
+        name="HbA1c_level"
+        required
+        #HbA1c_level="ngModel"
+      />
+      <span
+        *ngIf="
+          HbA1c_level.invalid && (HbA1c_level.dirty || HbA1c_level.touched)
+        "
+        class="help-block text-danger"
+      >
+        <div *ngIf="HbA1c_level.errors?.['required']">
+          HbA1c level is required.
+        </div>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="">Blood glucose level</label>
+      <input
+        type="number"
+        class="form-control"
+        [ngModel]="formModel.HbA1c_level"
+        name="blood_glucose_level"
+        required
+        #blood_glucose_level="ngModel"
+      />
+      <span
+        *ngIf="
+          blood_glucose_level.invalid &&
+          (blood_glucose_level.dirty || blood_glucose_level.touched)
+        "
+        class="help-block text-danger"
+      >
+        <div *ngIf="blood_glucose_level.errors?.['required']">
+          Blood glucose level is required.
+        </div>
+      </span>
+    </div>
+
     <div class="row justify-content-end">
       <div class="col">
         <button
