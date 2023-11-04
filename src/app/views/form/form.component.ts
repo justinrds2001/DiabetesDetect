@@ -15,11 +15,11 @@ export class FormComponent {
 
   async onSubmit(form: NgForm) {
     const formModel: FormModel = {
-      gender_encoded: form.value.gender_encoded,
+      gender_encoded: parseInt(form.value.gender_encoded),
       age: form.value.age,
-      hypertension: form.value.hypertension,
-      heart_disease: form.value.heart_disease,
-      smoking_history_encoded: form.value.smoking_history_encoded,
+      hypertension: parseInt(form.value.hypertension),
+      heart_disease: parseInt(form.value.heart_disease),
+      smoking_history_encoded: parseInt(form.value.smoking_history_encoded),
       bmi: form.value.bmi,
       HbA1c_level: form.value.HbA1c_level,
       blood_glucose_level: form.value.blood_glucose_level,
