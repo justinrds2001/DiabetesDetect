@@ -1,4 +1,4 @@
 export class PredictionModel {
-  diabetes: string = '';
+  diabetes: boolean = false;
   image_base64: string = '';
 }

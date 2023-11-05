@@ -1,172 +1,191 @@
-<div class="container">
-  <h2>Form</h2>
+<div class="container d-flex justify-content-center">
+  <div class="col-6 m-2">
+    <h2>Form</h2>
 
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="form-group">
-      <label for="">Age</label>
-      <input
-        type="number"
-        class="form-control"
-        [ngModel]="formModel.age"
-        name="age"
-        required
-        #age="ngModel"
-      />
-      <span
-        *ngIf="age.invalid && (age.dirty || age.touched)"
-        class="help-block text-danger"
-      >
-        <div *ngIf="age.errors?.['required']">Age is required.</div>
-      </span>
-    </div>
-
-    <div class="form-group">
-      <label for="">Gender</label>
-      <div>
-        <label>
-          <input
-            type="radio"
-            name="gender_encoded"
-            [(ngModel)]="formModel.gender_encoded"
-            value="1"
-            required
-          />
-          Male
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="gender"
-            [(ngModel)]="formModel.gender_encoded"
-            value="0"
-            required
-          />
-          Female
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="">Hypertension</label>
-      <div>
-        <label>
-          <input
-            type="radio"
-            name="hypertension"
-            [(ngModel)]="formModel.hypertension"
-            value="1"
-            required
-          />
-          Yes
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="hypertension"
-            [(ngModel)]="formModel.hypertension"
-            value="0"
-            required
-          />
-          No
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="">Heart disease</label>
-      <div>
-        <label>
-          <input
-            type="radio"
-            name="heart_disease"
-            [(ngModel)]="formModel.heart_disease"
-            value="1"
-            required
-          />
-          Yes
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="heart_disease"
-            [(ngModel)]="formModel.heart_disease"
-            value="0"
-            required
-          />
-          No
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="smoking_history_encoded">Smoking history</label>
-      <select
-        class="form-control"
-        name="smoking_history_encoded"
-        [(ngModel)]="formModel.smoking_history_encoded"
-        required
-      >
-        <option value="0">No Info</option>
-        <option value="4">Never</option>
-        <option value="5">Not Current</option>
-        <option value="3">Former</option>
-        <option value="2">Ever</option>
-        <option value="1">Current</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="">BMI</label>
-      <input
-        type="number"
-        class="form-control"
-        [ngModel]="formModel.bmi"
-        name="bmi"
-        required
-        #bmi="ngModel"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="">HbA1c level</label>
-      <input
-        type="number"
-        class="form-control"
-        [ngModel]="formModel.HbA1c_level"
-        name="HbA1c_level"
-        required
-        #HbA1c_level="ngModel"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="">Blood glucose level</label>
-      <input
-        type="number"
-        class="form-control"
-        [ngModel]="formModel.HbA1c_level"
-        name="blood_glucose_level"
-        required
-        #blood_glucose_level="ngModel"
-      />
-    </div>
-
-    <div class="row justify-content-end">
-      <div class="col">
-        <button
-          class="btn btn-primary btn-sm float-left"
-          type="submit"
-          [disabled]="
-            !f.valid ||
-            !formModel.gender_encoded ||
-            !formModel.hypertension ||
-            !formModel.heart_disease ||
-            !formModel.smoking_history_encoded
-          "
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngModel]="formModel.age"
+          name="age"
+          required
+          #age="ngModel"
+        />
+        <span
+          *ngIf="age.invalid && (age.dirty || age.touched)"
+          class="text-danger"
         >
-          Save
-        </button>
+          <div *ngIf="age.errors?.['required']">Age is required.</div>
+        </span>
       </div>
-    </div>
-  </form>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div>
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="gender_encoded"
+              [(ngModel)]="formModel.gender_encoded"
+              value="1"
+              required
+            />
+            <label class="form-check-label">Male</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="gender"
+              [(ngModel)]="formModel.gender_encoded"
+              value="0"
+              required
+            />
+            <label class="form-check-label">Female</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Hypertension</label>
+        <div>
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="hypertension"
+              [(ngModel)]="formModel.hypertension"
+              value="1"
+              required
+            />
+            <label class="form-check-label">Yes</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="hypertension"
+              [(ngModel)]="formModel.hypertension"
+              value="0"
+              required
+            />
+            <label class="form-check-label">No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Heart disease</label>
+        <div>
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="heart_disease"
+              [(ngModel)]="formModel.heart_disease"
+              value="1"
+              required
+            />
+            <label class="form-check-label">Yes</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="heart_disease"
+              [(ngModel)]="formModel.heart_disease"
+              value="0"
+              required
+            />
+            <label class="form-check-label">No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="smoking_history_encoded">Smoking history</label>
+        <select
+          class="form-control"
+          name="smoking_history_encoded"
+          [(ngModel)]="formModel.smoking_history_encoded"
+          required
+        >
+          <option value="0">No Info</option>
+          <option value="4">Never</option>
+          <option value="5">Not Current</option>
+          <option value="3">Former</option>
+          <option value="2">Ever</option>
+          <option value="1">Current</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="bmi">BMI</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngModel]="formModel.bmi"
+          name="bmi"
+          required
+          #bmi="ngModel"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="HbA1c_level">HbA1c level</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngModel]="formModel.HbA1c_level"
+          name="HbA1c_level"
+          required
+          #HbA1c_level="ngModel"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="blood_glucose_level">Blood glucose level</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngModel]="formModel.HbA1c_level"
+          name="blood_glucose_level"
+          required
+          #blood_glucose_level="ngModel"
+        />
+      </div>
+
+      <div class="row justify-content-end">
+        <div class="col">
+          <button
+            class="btn btn-primary btn-sm m-2"
+            type="submit"
+            [disabled]="
+              !f.valid ||
+              !formModel.gender_encoded ||
+              !formModel.hypertension ||
+              !formModel.heart_disease ||
+              !formModel.smoking_history_encoded
+            "
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-6 m-2">
+    <h2>Data Usage Notice</h2>
+    <p>
+      The information you provide in this form is solely for the purpose of
+      making a prediction and will not be stored or used for any other purposes.
+    </p>
+    <p>
+      Your data will be treated with the utmost confidentiality and will not be
+      shared with any third parties.
+    </p>
+  </div>
 </div>

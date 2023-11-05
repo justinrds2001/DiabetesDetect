@@ -1,13 +1,60 @@
 <div class="prediction-container">
   <h2>Prediction Result</h2>
   <div class="prediction-result">
-    <p>Diabetes: {{ prediction.diabetes }}</p>
+    <strong>
+      {{
+        prediction.diabetes
+          ? "You most likely have Diabetes."
+          : "You most likely do not have Diabetes."
+      }}
+    </strong>
   </div>
   <div class="prediction-image">
-    <img
-      src="data:image/png;base64, {{ prediction.image_base64 }}"
-      alt="Diabetes Prediction Image"
-      style="width: 100%"
-    />
+    <figure class="figure">
+      <img
+        src="data:image/png;base64, {{ prediction.image_base64 }}"
+        alt="Diabetes Prediction Explanation"
+        style="width: 100%"
+        class="figure-img img-fluid rounded"
+      />
+      <figcaption class="figure-caption">
+        Figure 1: Prediction explanation
+      </figcaption>
+    </figure>
+    <p>
+      We provided you with a comprehensive explanation of the prediction (Figure
+      1). It uses a Shap plot to illustrate the factors that influenced the
+      outcome.
+    </p>
+    <ul>
+      <li>
+        Positive contributions (in blue) represent factors that decrease the
+        likelihood of diabetes.
+      </li>
+      <li>
+        Negative contributions (in red) indicate factors that increase the
+        likelihood of diabetes.
+      </li>
+      <li>
+        The length of each bar indicates the magnitude of that particular
+        contribution.
+      </li>
+    </ul>
+    <p>
+      By analyzing the magnitude and direction of these contributions, you can
+      gain insights into how the model arrived at its decision.
+    </p>
+
+    <h4>Advice</h4>
+    <p *ngIf="prediction.diabetes">
+      Based on the prediction, we recommend that you consult a doctor as soon as
+      possible to confirm the diagnosis. Early detection and treatment can be
+      beneficial in preventing complications.
+    </p>
+    <p *ngIf="!prediction.diabetes">
+      Based on the prediction, you are unlikely to have diabetes. However, we
+      recommend that you consult a doctor if you experience any symptoms.
+    </p>
   </div>
+  <a class="btn btn-secondary" routerLink="/home">Go back</a>
 </div>
