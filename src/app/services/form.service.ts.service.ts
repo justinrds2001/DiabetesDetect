@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FormService {
-  private baseUrl: String = 'http://127.0.0.1:5000/';
+  private baseUrl: String = 'https://hcaidapi-production.up.railway.app/';
   private formModel: FormModel = new FormModel();
 
   constructor(private httpClient: HttpClient) {}
